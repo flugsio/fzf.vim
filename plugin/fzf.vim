@@ -22,8 +22,7 @@
 " WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 let s:default_height = '40%'
-let s:fzf_go = expand('<sfile>:h:h').'/bin/fzf'
-let s:fzf_tmux = expand('<sfile>:h:h').'/bin/fzf-tmux'
+let s:fzf_tmux = 'fzf-tmux'
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -32,9 +31,7 @@ set cpo&vim
 
 function! s:fzf_exec()
   if !exists('s:exec')
-    if executable(s:fzf_go)
-      let s:exec = s:fzf_go
-    elseif executable('fzf')
+    if executable('fzf')
       let s:exec = 'fzf'
     else
       redraw
