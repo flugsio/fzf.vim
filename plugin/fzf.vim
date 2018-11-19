@@ -443,6 +443,8 @@ endfunction
 call s:defs([
 \'command! -bang -nargs=? -complete=dir Files  call fzf#vim#files(<q-args>, s:w(<bang>0))',
 \'command! -bang GitFiles                      call fzf#vim#gitfiles(s:w(<bang>0))',
+\'command! -bang GitFilesModified              call fzf#vim#gitfilesmodified(s:w(<bang>0))',
+\'command! -bang GitFilesModifiedBranch        call fzf#vim#gitfilesmodifiedbranch(s:w(<bang>0))',
 \'command! -bang Buffers                       call fzf#vim#buffers(s:w(<bang>0))',
 \'command! -bang Lines                         call fzf#vim#lines(s:w(<bang>0))',
 \'command! -bang BLines                        call fzf#vim#buffer_lines(s:w(<bang>0))',

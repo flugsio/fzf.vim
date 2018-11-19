@@ -350,6 +350,38 @@ function! fzf#vim#gitfiles(...)
 endfunction
 
 " ------------------------------------------------------------------
+" GitFilesModified
+" ------------------------------------------------------------------
+
+function! fzf#vim#gitfilesmodified(...)
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  if v:shell_error
+    return s:warn('Not in git repo')
+  endif
+  return s:fzf(fzf#vim#wrap({
+  \ 'source':  'git diff --name-only',
+  \ 'dir':     root,
+  \ 'options': '-m --prompt "Modified> "'
+  \}), a:000)
+endfunction
+
+" ------------------------------------------------------------------
+" GitFilesModifiedBranch
+" ------------------------------------------------------------------
+
+function! fzf#vim#gitfilesmodifiedbranch(...)
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  if v:shell_error
+    return s:warn('Not in git repo')
+  endif
+  return s:fzf(fzf#vim#wrap({
+  \ 'source':  'git diff --name-only origin/master...HEAD',
+  \ 'dir':     root,
+  \ 'options': '-m --prompt "Modified> "'
+  \}), a:000)
+endfunction
+
+" ------------------------------------------------------------------
 " Buffers
 " ------------------------------------------------------------------
 function! s:bufopen(lines)
